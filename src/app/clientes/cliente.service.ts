@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { formatDate, DatePipe } from '@angular/common';
 import { CLIENTES } from './clientes.json';
 import { Cliente } from './cliente';
 import { Observable, of, throwError} from 'rxjs';
@@ -20,7 +21,22 @@ export class ClienteService {
   getClientes(): Observable<Cliente[]>{
     // return of(CLIENTES);
     return this.http.get(this.urlEndPoint).pipe(
-      map( response => response as Cliente[] )
+      // map( response => response as Cliente[] )
+      // con el operador map transformamos los datos 
+      map(response =>{
+        //let permite definir una variable local dentro de un metodo o una funcion
+        let clientes = response as Cliente[];
+
+        return clientes.map(cliente =>{
+          //cliente.nombre = cliente.nombre.toUpperCase();// con el operador map y el metodo uppercase transformamos los datos en mayusculas
+          //registerLocaleData(localeEs,'es');//cambiamos el idioma local para la fecha
+          //cliente.createAt = formatDate(cliente.createAt, 'fullDate','en-US')// con formatDate podemos transformar el formato de la fecha
+          let datePipe = new DatePipe('es');
+          cliente.createAt = datePipe.transform(cliente.createAt, 'fullDate')
+          return cliente;
+        });
+      })
+
     );
   }
 
