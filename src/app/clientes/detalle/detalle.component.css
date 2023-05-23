@@ -8,10 +8,10 @@
     z-index: 1000;
 }
 .animacion{
-    animation-duration: 2s;
+    animation-duration: 1s;
     animation-fill-mode: both;
-    -webkit-animation-duration: 2s;
-    -webkit-animation-fill-mode: 2s;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-fill-mode: 1s;
 }
 .fadeIn{
     animation-name: fadeIn;

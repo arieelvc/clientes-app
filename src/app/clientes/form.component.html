@@ -59,6 +59,16 @@
                     <input type="date" class="form-control" [(ngModel)]="cliente.createAt" name="createAt">
                 </div>
             </div>
+            <div class="form-group row my-3">
+                <label for="region" class="col-form-label col-sm-2">Region</label>
+                <div class="col-sm-6">
+                    <select [compareWith]="compararRegion" type="date" class="form-control" [(ngModel)]="cliente.region"
+                        name="region">
+                        <option [ngValue]="undefined">--- Seleccionar una Region ---</option>
+                        <option *ngFor="let region of regiones" [ngValue]="region">{{ region.nombre }}</option>
+                    </select>
+                </div>
+            </div>
 
             <div class="form-group row my-3">
                 <div class="col-sm-6">
